@@ -8,17 +8,16 @@ phases:
 
   build:
     commands:
-      - echo Building Spring Boot application...
-      - mvn clean package -DskipTests
-
       - echo Building Docker image...
+      - mvn clean package
       - docker build -t ci-cd-container-app .
-
-      - echo Tagging Docker image...
       - docker tag ci-cd-container-app:latest 158388008894.dkr.ecr.us-east-2.amazonaws.com/ci-cd-container-app:latest
 
   post_build:
     commands:
-      - echo Pushing Docker image to ECR...
+      - echo Pushing image...
       - docker push 158388008894.dkr.ecr.us-east-2.amazonaws.com/ci-cd-container-app:latest
-      - echo Build completed successfully
+
+artifacts:
+  files:
+    - imagedefinitions.json
