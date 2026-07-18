@@ -8,7 +8,7 @@ public class HelloController {
 
     @GetMapping("/")
     public String home() {
-        return "CI/CD Pipeline using AWS CodePipeline, CodeBuild, Docker & ECS";
+        return "CI/CD Pipeline Successfully Updated!";
     }
 
 }
