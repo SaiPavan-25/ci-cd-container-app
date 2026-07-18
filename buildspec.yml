@@ -17,7 +17,8 @@ phases:
       - echo Pushing Docker image...
       - docker push 158388008894.dkr.ecr.us-east-2.amazonaws.com/ci-cd-container-app:latest
       - printf '[{"name":"ci-cd-task","imageUri":"158388008894.dkr.ecr.us-east-2.amazonaws.com/ci-cd-container-app:latest"}]' > imagedefinitions.json
+      - echo Build completed successfully
 
-  artifacts:
+artifacts:
   files:
     - imagedefinitions.json
