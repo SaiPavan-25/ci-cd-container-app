@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin YOUR_ACCOUNT_ID.dkr.ecr.us-east-2.amazonaws.com
+
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t ci-cd-container-app .
+      - docker tag ci-cd-container-app:latest YOUR_ACCOUNT_ID.dkr.ecr.us-east-2.amazonaws.com/ci-cd-container-app:latest
+
+  post_build:
+    commands:
+      - echo Pushing Docker image to ECR...
+      - docker push YOUR_ACCOUNT_ID.dkr.ecr.us-east-2.amazonaws.com/ci-cd-container-app:latest
+      - echo Build completed successfully
