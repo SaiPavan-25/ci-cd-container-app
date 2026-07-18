@@ -1,0 +1,6 @@
+[
+  {
+    "name": "ci-cd-container",
+    "imageUri": "158388008894.dkr.ecr.us-east-2.amazonaws.com/ci-cd-container-app:latest"
+  }
+]
